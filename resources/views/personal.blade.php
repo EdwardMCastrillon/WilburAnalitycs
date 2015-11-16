@@ -287,13 +287,21 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title">Mensaje</h4>
+                        <h4 class="modal-title" id="modal-title"></h4>
                       </div>
                       <div class="modal-body">
                         <p id="TextoAlerta"></p>
+                        <form class="form" action="" method="post">
+                          <div class="form-group">
+                            <div class="col-sm-6">
+                              <input name="docuConsulta" id="docuConsulta" class="form-control" placeholder="Numero Documeto" required="" type="text">
+                            </div>
+                          </div>
+                        </form>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar Mensaje</button>
+                        <button type="button" class="btn btn-default" id="cerrarModal" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-default" id="aceptarModal" data-dismiss="modal">Aceptar</button>
                       </div>
                     </div>
                   </div>
