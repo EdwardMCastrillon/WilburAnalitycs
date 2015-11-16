@@ -19,6 +19,7 @@ Route::post('/loggin', 'LogginController@index');
 Route::get('MenuPrincipal/personal', 'PersonalController@personal');
 Route::get('guardarUsuario', 'PersonalController@guardar');
 Route::get('/MenuPrincipal/personal/{id}', 'PersonalController@show');
+Route::get('/MenuPrincipal/personal/{id}', 'PersonalController@show');
 
 
 
@@ -62,4 +63,4 @@ Route::get('/MenuPrincipal/personal/{id}', 'PersonalController@show');
 
 
 
-//Terminan Rutas Ivan 
+//Terminan Rutas Ivan
