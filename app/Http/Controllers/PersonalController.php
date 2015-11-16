@@ -100,7 +100,7 @@ class PersonalController extends Controller
     public function show($id)
     {
 
-        $municipios = Municipio::where('idDepartamento', '=', $id)->get();
+        $municipios = Municipio::where('idDepartamentoPersonal', '=', $id)->get();
         dd($municipios);
         return json_encode($municipios);
     }
