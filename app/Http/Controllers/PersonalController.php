@@ -11,6 +11,8 @@ use App\Profesion;
 use App\TipoContrato;
 use App\TipoDocumento;
 use App\Personal;
+use App\Departamento;
+use App\Municipio;
 
 class PersonalController extends Controller
 {
@@ -27,8 +29,9 @@ class PersonalController extends Controller
          $profesion = Profesion::all();
          $tipoDocumento = TipoDocumento::all();
          $tipoContrato = TipoContrato::all();
+         $departamento = Departamento::all();
          $array = array();
-         array_push($array, $cargo, $profesion, $tipoDocumento, $tipoContrato);
+         array_push($array, $tipoDocumento, $departamento, $profesion,  $cargo, $tipoContrato);
 
          return view('personal')->with('array', $array);
      }
