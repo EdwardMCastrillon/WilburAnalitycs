@@ -75,6 +75,16 @@
             <li><a href="MenuPrincipal/Partos"><i class="fa fa-caret-right"></i> Registro Partos</a></li>
           </ul>
         </li>
+        <li class="nav-parent"><a href="#"><i class="fa fa-edit"></i> <span> Reportes</span></a>
+          <ul class="children">
+            <li><a href="MenuPrincipal/Animales"><i class="fa fa-caret-right"></i> Reporte Partos</a></li>
+          </ul>
+        </li>
+        <li class="nav-parent"><a href="#"><i class="fa fa-edit"></i> <span> Indicadores</span></a>
+          <ul class="children">
+            <li><a href="MenuPrincipal/Animales"><i class="fa fa-caret-right"></i> Registro Animal</a></li>
+          </ul>
+        </li>
       </ul>
 
       <!-- infosummary -->
