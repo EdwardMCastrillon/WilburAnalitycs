@@ -35,6 +35,7 @@
       $contrato : $("#contrato"),
       $fechaContra : $("#fechaContra"),
       $estado : $("#estado"),
+      _token : $("input[name=_token]"),
 
       Init: function (){
         this.inactivarCampos();
@@ -72,10 +73,14 @@
 
       escucharDepartamento: function (){
         var self = this;
-        var id = self.$departamento.val();
         self.$departamento.change(function (){
+          var id = self.$departamento.val();
           if ( id != 0 ){
-
+            var urlParams = '/MenuPrincipal/personal/:ID'
+            var url = urlParams.replace(':ID', id );
+            $.ajax( url, { "_token": self._token.val() }, function (response){
+              console.dir(response);
+            });
           }
         });
       },
