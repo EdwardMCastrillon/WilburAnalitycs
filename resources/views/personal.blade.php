@@ -40,10 +40,10 @@
                       <label class="col-sm-4">Tipo Documento</label>
                       <div class="col-sm-6">
                         <select class="form-control" name="tipoDocumento" id="tipoDocumento">
-                          <option value="">Seleccione...</option>
-                      @foreach($array[0] as $combo)
-                          <option value="{{ $combo->id }}">{{ $combo->descripcion }}</option>
-                      @endforeach
+                          <option value="0">Seleccione...</option>
+                            @foreach($array[0] as $combo)
+                                <option value="{{ $combo->idTipoDocumento }}">{{ $combo->descripcion }}</option>
+                            @endforeach
                         </select>
                       </div>
                     </div>
@@ -86,10 +86,10 @@
                       <label class="col-sm-4">Departamento</label>
                       <div class="col-sm-6">
                         <select class="form-control" name="departamento" id="departamento">
-                          <option value="">Seleccione una Opcion</option>
-                          <option value="">Cedula Ciudadania</option>
-                          <option value="">Cedula Extranjeria</option>
-                          <option value="">Pasaporte</option>
+                          <option value="0">Seleccione...</option>
+                            @foreach($array[1] as $combo)
+                                <option value="{{ $combo->idDepartamento }}">{{ $combo->descripcion }}</option>
+                            @endforeach
                         </select>
                       </div>
                     </div>
@@ -123,9 +123,9 @@
                       <label class="col-sm-4">Tipo Rh</label>
                       <div class="col-sm-6">
                         <select class="form-control" name="rh" id="rh">
-                          <option value="">Seleccione una Opcion</option>
-                          <option value="">+</option>
-                          <option value="">-</option>
+                          <option value="0">Seleccione una Opcion</option>
+                          <option value="1">+</option>
+                          <option value="2">-</option>
                         </select>
                       </div>
                     </div>
@@ -171,10 +171,10 @@
                     <label class="col-sm-3">Profesion</label>
                     <div class="col-sm-4">
                       <select class="form-control" name="profesion" id="profesion">
-                        <option value="">Seleccione uno</option>
-                        <option value="">Cedula Ciudadania</option>
-                        <option value="">Cedula Extranjeria</option>
-                        <option value="">Pasaporte</option>
+                        <option value="0">Seleccione...</option>
+                          @foreach($array[2] as $combo)
+                              <option value="{{ $combo->idProfesion }}">{{ $combo->descripcion }}</option>
+                          @endforeach
                       </select>
                     </div>
                   </div>
@@ -222,9 +222,10 @@
                   <label class="col-sm-3">Cargo</label>
                   <div class="col-sm-7">
                     <select class="form-control" name="cargo" id="cargo">
-                      <option value="">Seleccione uno</option>
-                      <option value="">Activo</option>
-                      <option value="">Inactivo</option>
+                      <option value="0">Seleccione...</option>
+                        @foreach($array[3] as $combo)
+                            <option value="{{ $combo->idCargo }}">{{ $combo->descripcion }}</option>
+                        @endforeach
                     </select>
                   </div>
                 </div>
@@ -233,10 +234,10 @@
                     <label class="col-sm-3">Tipo Contrato</label>
                     <div class="col-sm-7">
                       <select class="form-control" name="contrato" id="contrato">
-                        <option value="">Seleccione uno</option>
-                        <option value="">Cedula Ciudadania</option>
-                        <option value="">Cedula Extranjeria</option>
-                        <option value="">Pasaporte</option>
+                        <option value="0">Seleccione...</option>
+                          @foreach($array[4] as $combo)
+                              <option value="{{ $combo->idTipoContrato }}">{{ $combo->descripcion }}</option>
+                          @endforeach
                       </select>
                     </div>
                   </div>
@@ -255,9 +256,9 @@
                     <label class="col-sm-3">Estado</label>
                     <div class="col-sm-4">
                       <select class="form-control" name="estado" id="estado">
-                        <option value="">Seleccione uno</option>
-                        <option value="">Activo</option>
-                        <option value="">Inactivo</option>
+                        <option value="0">Seleccione uno</option>
+                        <option value="1">Activo</option>
+                        <option value="2">Inactivo</option>
                       </select>
                     </div>
                   </div>
@@ -304,7 +305,7 @@
 <script src="{{ URL::asset('js/jquery.mousewheel.js') }}"></script>
 <script src="{{ URL::asset('js/dropzone.min.js') }}"></script>
 <script src="{{ URL::asset('js/colorpicker.js') }}"></script>
-<script src="{{ URL::asset('js/personal/personal.js') }}"></script>
+<script src="{{ URL::asset('js/application/personal.js') }}"></script>
 
 <script src="{{ URL::asset('js/personal/wizard.js') }}"></script>
 <tester id="tags_tag_autosize_tester" style="position: absolute; top: -9999px; left: -9999px; width: auto; font-size: 13px; font-family: &quot;LatoRegular&quot;,&quot;Lucida Grande&quot;,&quot;Lucida Sans Unicode&quot;,Helvetica,sans-serif; font-weight: 400; letter-spacing: 0px; white-space: nowrap;"></tester>
