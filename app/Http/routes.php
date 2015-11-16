@@ -17,8 +17,13 @@ Route::get('/', function () {
 
 Route::post('loggin', 'LogginController@index');
 Route::get('MenuPrincipal/personal', 'PersonalController@personal');
-Route::get('guardarUsuario', 'PersonalController@guardar');
-Route::get('MenuPrincipal/personal/{id}', 'PersonalController@show');
+Route::get('/MenuPrincipal/GestionarPersonal/Personal/guardar', 'PersonalController@guardar');
+Route::get('/MenuPrincipal/personal/{id}', 'PersonalController@show');
+Route::get('/MenuPrincipal/GestionarPersonal/Personal/consultar/{id}', 'PersonalController@consulta');
+Route::get('/MenuPrincipal/GestionarPersonal/Personal/eliminar/{id}', 'PersonalController@eliminar');
+Route::get('/MenuPrincipal/GestionarPersonal/Personal/editar/{id}', 'PersonalController@consulta');
+
+
 
 /*
 _______________________________________________________________________

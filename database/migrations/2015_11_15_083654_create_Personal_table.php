@@ -36,7 +36,8 @@ public function up()
        $table->integer('idCargo')->nullable();
        $table->integer('idTipoContrato')->nullable();
        $table->date('fechaContrato')->nullable();
-       $table->string('estado', 1);
+       $table->string('estado', 2);
+       $table->timestamps();
    });
   }
 
