@@ -71,8 +71,8 @@
         </li>
         <li class="nav-parent"><a href="#"><i class="fa fa-edit"></i> <span> Gestionar Animales</span></a>
           <ul class="children">
-            <li><a href="MenuPrincipal/Animales"><i class="fa fa-caret-right"></i> Registro Animal</a></li>
-            <li><a href="MenuPrincipal/Partos"><i class="fa fa-caret-right"></i> Registro Partos</a></li>
+            <li><a href="gestionAnimal/animales"><i class="fa fa-caret-right"></i> Registro Animal</a></li>
+            <li><a href="gestionAnimal/jaulas"><i class="fa fa-caret-right"></i> Asignar Jaula</a></li>
           </ul>
         </li>
         <li class="nav-parent"><a href="#"><i class="fa fa-edit"></i> <span> Reportes</span></a>
@@ -290,6 +290,7 @@
     </div><!-- headerbar -->
 
     <div class="pageheader">
+
       <h2><i class="fa fa-home"></i> Dashboard <span>Subtitulos</span></h2>
 
     </div>
