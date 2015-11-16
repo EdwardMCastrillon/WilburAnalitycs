@@ -200,9 +200,9 @@
                       <li class="next"><a href="javascript:void(0)">Next</a></li>
                       <p>
                         <button id="nuevo" class="btn btn-danger">Nuevo</button>
-                        <input type="submit" id="guardar" class="btn btn-danger" value="guardar">
+                        <button id="guardar" class="btn btn-danger" >Guardar</button>
                         <button id="modificar" class="btn btn-danger">Modificar</button>
-                        <button id="consultar" class="btn btn-danger">Consultar</button>
+                        <button id="ConsultarUsr" class="btn btn-danger">Consultar</button>
                         <button id="eliminar" class="btn btn-danger">Eliminar</button>
                         <button id="listar" class="btn btn-danger">Listar</button>
                         <button id="limpiar" class="btn btn-danger">Limpiar</button>
@@ -236,8 +236,9 @@
 </div>
 
 
+@section('js')
 <script src="{{ URL::asset('js/application/Animales/DatosAnimal.js') }}"></script>
-
+@stop
 	<script>
 		jQuery(document).ready(function(){
 

@@ -25,9 +25,11 @@ class AnimalesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function consult($id)
     {
-        //
+        $Animal = App\Animal::find({$id});
+
+        return json_encode($Animal);
     }
 
     /**
@@ -62,7 +64,7 @@ class AnimalesController extends Controller
 
         $Animal->save();
 
-        return view('MenuPrincipal');
+        return redirect('MenuPrincipal');
     }
 
     /**
