@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Animal;
 
 class AnimalesController extends Controller
 {
@@ -35,9 +36,33 @@ class AnimalesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $Request)
     {
-        //
+        $Animal = new Animal();
+
+        $Animal->idAnimal  = $Request->codigo;
+        $Animal->procedencia = $Request->procedencia;
+        $Animal->codigo = $Request->codigo;
+        $Animal->raza = $Request->raza;
+        $Animal->sexo = $Request->sexo;
+        $Animal->estado = $Request->estado;
+        $Animal->fechaDestete = $Request->fechadestete;
+
+        $Animal->pesoNacer = $Request->pesoNacer;
+        $Animal->pesoDestete = $Request->pesoDestete;
+        $Animal->fechaConsumo = $Request->fechaConsumo;
+        $Animal->codigoParto = $Request->codParto;
+        $Animal->fechaParto = $Request->fechaparto;
+        $Animal->codigoMadre = $Request->codMadre;
+        $Animal->Edad = $Request->edad;
+        $Animal->razaMadre = $Request->razamadre;
+        $Animal->razaPadre = $Request->razapadre;
+        $Animal->tipoAnimal = $Request->tipoAnimal;
+        $Animal->remember_token = $Request->_token;
+
+        $Animal->save();
+
+        return view('MenuPrincipal');
     }
 
     /**

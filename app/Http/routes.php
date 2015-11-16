@@ -15,12 +15,26 @@ Route::get('/', function () {
     return view('loggin');
 });
 
-Route::post('/loggin', 'LogginController@index');
+Route::post('loggin', 'LogginController@index');
 Route::get('MenuPrincipal/personal', 'PersonalController@personal');
 Route::get('guardarUsuario', 'PersonalController@guardar');
-Route::get('/MenuPrincipal/personal/{id}', 'PersonalController@show');
+Route::get('MenuPrincipal/personal/{id}', 'PersonalController@show');
 
-Route::get('/gestionAnimal/animales/guardar', 'AnimalesController@save');
+/*
+_______________________________________________________________________
+|                                                                      |
+|             Modulo de Gestion de Animales                            |
+|______________________________________________________________________|*/
+Route::get('/gestionAnimal/animales',function(){
+  return view('Animales.DatosAnimal');
+});
+Route::get('/gestionAnimal/jaulas',function(){
+  return view('Animales.AsignarJaula');
+});
+Route::get('/gestionAnimal/animales/store', 'AnimalesController@store');
 Route::get('/gestionAnimal/animales/consultar/{id}', 'AnimalesController@consulta');
-Route::get('/gestionAnimal/animales/{id}', 'AnimalesController@eliminar');
-Route::get('/gestionAnimal/animales/{id}', 'AnimalesController@editar');
+Route::get('/gestionAnimal/animales/eliminar/{id}', 'AnimalesController@eliminar');
+Route::get('/gestionAnimal/animales/editar/{id}', 'AnimalesController@editar');
+
+
+Route::get('/gestionAnimal/AsignarJaula/{$id?}', 'AnimalesController@AsignarJaula');
