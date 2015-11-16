@@ -23,7 +23,7 @@
       $rh : $("#rh"),
       $direccion : $("#direccion"),
       $email : $("#email"),
-      $telFijo : $("#telFijo"),
+      $telFijo : $("#telfijo"),
       $telMovil : $("#telMovil"),
       $profesion : $("#profesion"),
       $fechaTitulo : $("#fechaTitulo"),
@@ -36,10 +36,13 @@
       $fechaContra : $("#fechaContra"),
       $estado : $("#estado"),
       _token : $("input[name=_token]"),
+      modalAlertas : $("#ModalAlertas"),
+      textoAlerta : $("#TextoAlerta"),
 
       Init: function (){
         this.inactivarCampos();
         this.escucharBotones();
+        this.escucharConsultar();
         this.escucharDepartamento();
       },
 
@@ -75,6 +78,7 @@
         var self = this;
         self.$departamento.change(function (){
           var id = self.$departamento.val();
+            debugger;
           if ( id != 0 ){
             var urlParams = '/MenuPrincipal/personal/:ID'
             var url = urlParams.replace(':ID', id );
@@ -82,6 +86,14 @@
               console.dir(response);
             });
           }
+        });
+      },
+
+      escucharConsultar: function (){
+        var self = this;
+        self.$consultar.on("click", function (even){
+          even.preventDefault();
+          self.modalAlertas.modal('show');
         });
       },
 

@@ -38,33 +38,33 @@ class PersonalController extends Controller
 
      public function guardar(Request $Request){
 
-          $Persona = new Personal();
 
+
+          $Persona = new Personal();
 
           $Persona->nombre = $Request->nombres;
           $Persona->documento = $Request->documento;
-          $Persona->tipoDocumento = $Request->tipoDocumento;
+          $Persona->idTipoDocumento = $Request->tipoDocumento;
           $Persona->primerApellido = $Request->prApellido;
           $Persona->segundoApellido = $Request->sgApellido;
           $Persona->fechaNacimiento = $Request->fechaNaci;
-          $Persona->departamento = $Request->departamento;
-          $Persona->municipio = $Request->municipio;
+          $Persona->idDepartamento = $Request->departamento;
+          $Persona->idMunicipio = $Request->municipio;
           $Persona->tipoSangre = $Request->sangre;
           $Persona->tipoRh = $Request->rh;
           $Persona->direccion = $Request->direccion;
           $Persona->correo = $Request->email;
-          $Persona->telefono = $Request->telFijo;
+          $Persona->telefono = $Request->telfijo;
           $Persona->telefonoMovil = $Request->telMovil;
-          $Persona->profesion = $Request->profesion;
+          $Persona->idProfesion = $Request->profesion;
           $Persona->fechaTitulo = $Request->fechaTitulo;
           $Persona->otrosEstudios = $Request->otrosEstu;
           $Persona->finalizacion = $Request->fechaFin;
-          $Persona->obtenido = $Request->nombres;
-          $Persona->cargo = $Request->cargo;
-          $Persona->tipoContrato = $Request->contrato;
+          $Persona->obtenido = "Si";
+          $Persona->idCargo = $Request->cargo;
+          $Persona->idTipoContrato = $Request->contrato;
           $Persona->fechaContrato = $Request->fechaContra;
           $Persona->estado = $Request->estado;
-          $Persona->remember_token = $Request->_token;
 
           $Persona->save();
           return view('guardado');
@@ -94,15 +94,15 @@ class PersonalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $id, 2015-11-16 09:37:40, 2015-11-16 09:37:40) returning "id")
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
 
-        $municipios = Municipio::where('idDepartamentoPersonal', '=', $id)->get();
-        dd($municipios);
-        return json_encode($municipios);
+        $municipios = Municipio::where('idDepartamento', '=', $id)->get();
+
+        return dd($municipios);//->toJson();
     }
 
     /**
