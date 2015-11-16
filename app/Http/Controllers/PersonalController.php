@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -75,9 +76,11 @@ class PersonalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function consulta($id)
     {
-        //
+        $persona = Personal::where('documento', '=', $id)->get();
+        $json = json_encode($persona);
+        return response()->json($persona);
     }
 
     /**
@@ -86,9 +89,17 @@ class PersonalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function eliminar($id)
     {
-        //
+      $persona = Personal::where('documento', '=', $id)->get();
+        if (is_null ($persona))
+        {
+            App::abort(404);
+        }
+
+        $persona->delete();
+
+        return response()->json(['mensaje' => 'El registro se elimino correctamente']);
     }
 
     /**
