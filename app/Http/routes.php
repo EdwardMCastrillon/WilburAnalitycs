@@ -62,4 +62,12 @@ Route::get('/MenuPrincipal/personal/{id}', 'PersonalController@show');
 
 
 
-//Terminan Rutas Ivan 
+//Terminan Rutas Ivan
+
+
+//Rutas Edward
+
+Route::get('/gestionAnimal/animales/guardar', 'AnimalesController@save');
+Route::get('/gestionAnimal/animales/consultar/{id}', 'AnimalesController@consulta');
+Route::get('/gestionAnimal/animales/{id}', 'AnimalesController@eliminar');
+Route::get('/gestionAnimal/animales/{id}', 'AnimalesController@editar');
