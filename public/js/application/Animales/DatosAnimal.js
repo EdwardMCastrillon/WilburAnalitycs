@@ -11,7 +11,7 @@ $.ajaxSetup({
 
           $buttonCrear : $('#Nuevo'),
           $buttonConsulta: $('#ConsultarUsr'),
-          ModalAlerta:$('#ModalAlertas'),
+          ModalAlerta:$('#ModalAlerta'),
           procedencia:$('#procedencia'),
           codigo     :$('#codigo'),
           raza     :$('#raza'),
@@ -31,7 +31,6 @@ $.ajaxSetup({
           MensajeAlerta:'',
 
           Init: function(){
-            alert(this.$buttonConsulta)
             this.EscucharButtonGuardar()
             this.OcultarCampos()
             this.EscucharButtonConsulta()
@@ -44,9 +43,9 @@ $.ajaxSetup({
               e.preventDefault()
 
               self.MensajeAlerta = 'Ingrese el Id de su usuario: '
-              $('ModalAlerta h4').empty()
-                               .text(MensajeAlerta)
-              ModalAlerta.modal('show')
+              $('#TextoAlerta').empty()
+                                 .text(self.MensajeAlerta)
+              self.ModalAlerta.modal('show')
             })
           },
 
@@ -83,22 +82,22 @@ $.ajaxSetup({
           OcultarCampos: function(){
             var self = this
 
-            self.procedencia.prop('disabled',true)
-            self.codigo.prop('disabled', true)
-            self.raza.prop('disabled', true)
-            self.sexo.prop('disabled', true)
-            self.estado.prop('disabled', true)
-            self.pesoNacer.prop('disabled', true)
-            self.pesoDestete.prop('disabled', true)
-            self.fechadestete.prop('disabled', true)
-            self.fechaConsumo.prop('disabled', true)
-            self.fechaparto.prop('disabled', true)
-            self.codParto.prop('disabled', true)
-            self.codMadre.prop('disabled', true),
-            self.edad.prop('disabled', true)
-            self.razamadre.prop('disabled', true)
-            self.razapadre.prop('disabled', true)
-            self.tipoAnimal.prop('disabled', true)
+            self.procedencia.prop('disabled','disable')
+            self.codigo.prop('disabled', 'disable')
+            self.raza.prop('disabled', 'disable')
+            self.sexo.prop('disabled', 'disable')
+            self.estado.prop('disabled', 'disable')
+            self.pesoNacer.prop('disabled', 'disable')
+            self.pesoDestete.prop('disabled', 'disable')
+            self.fechadestete.prop('disabled', 'disable')
+            self.fechaConsumo.prop('disabled', 'disable')
+            self.fechaparto.prop('disabled', 'disable')
+            self.codParto.prop('disabled', 'disable')
+            self.codMadre.prop('disabled', 'disable'),
+            self.edad.prop('disabled', 'disable')
+            self.razamadre.prop('disabled', 'disable')
+            self.razapadre.prop('disabled', 'disable')
+            self.tipoAnimal.prop('disabled', 'disable')
           }
 
 

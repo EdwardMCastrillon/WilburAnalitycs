@@ -27,7 +27,7 @@ class AnimalesController extends Controller
      */
     public function consult($id)
     {
-        $Animal = App\Animal::find({$id});
+        $Animal = App\Animal::find($id);
 
         return json_encode($Animal);
     }
