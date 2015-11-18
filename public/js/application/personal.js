@@ -58,6 +58,7 @@ $.ajaxSetup({
         this.escucharEliminar();
         this.escucharModificar();
         this.escucharLimpiar();
+        this.escucharListar();
         this.limpiarCampos();
       },
 
@@ -169,6 +170,17 @@ $.ajaxSetup({
             even.preventDefault();
             self.limpiarCampos();
             self.inactivarCampos();
+          });
+      },
+
+      escucharListar: function (){
+          var self = this;
+          self.$listar.on("click", function (even){
+            even.preventDefault();
+            var url = '/MenuPrincipal/GestionarPersonal/Personal/listar';
+            $.ajax( url ).done( function (response){
+              
+            });
           });
       },
 

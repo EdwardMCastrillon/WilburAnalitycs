@@ -21,7 +21,7 @@ Route::get('/MenuPrincipal/GestionarPersonal/Personal/guardar', 'PersonalControl
 Route::get('/MenuPrincipal/personal/{id}', 'PersonalController@show');
 Route::get('/MenuPrincipal/GestionarPersonal/Personal/consultar/{id}', 'PersonalController@consulta');
 Route::get('/MenuPrincipal/GestionarPersonal/Personal/eliminar/{id}', 'PersonalController@eliminar');
-Route::get('/MenuPrincipal/GestionarPersonal/Personal/editar/{id}', 'PersonalController@consulta');
+Route::get('/MenuPrincipal/GestionarPersonal/Personal/listar', 'PersonalController@all');
 
 
 
