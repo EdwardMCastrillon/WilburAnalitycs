@@ -25,8 +25,8 @@ class Animal extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['documento', 'idTipoDocumento', 'nombre', 'primerApellido',
-                           'direccion', 'correo', 'telefono', 'telefonoMovil', 'estado'];
+    /*protected $fillable = ['documento', 'idTipoDocumento', 'nombre', 'primerApellido',
+                           'direccion', 'correo', 'telefono', 'telefonoMovil', 'estado'];*/
 
     /**
      * The attributes excluded from the model's JSON form.

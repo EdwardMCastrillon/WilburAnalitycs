@@ -3,6 +3,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
+  <meta name="_token" content="{{ csrf_token() }}">
   <link rel="shortcut icon" href="images/favicon.png" type="image/png">
 
   <title>Bracket Responsive Bootstrap3 Admin</title>
@@ -91,8 +92,8 @@
         </li>
         <li class="nav-parent"><a href="#"><i class="fa fa-edit"></i> <span> Gestionar Animales</span></a>
           <ul class="children">
-            <li><a href="gestionAnimal/animales"><i class="fa fa-caret-right"></i> Registro Animal</a></li>
-            <li><a href="gestionAnimal/jaulas"><i class="fa fa-caret-right"></i> Asignar Jaula</a></li>
+            <li><a href="/MenuPrincipal/GestionAnimal/animales"><i class="fa fa-caret-right"></i> Registro Animal</a></li>
+            <li><a href="/MenuPrincipal/GestionAnimal/jaulas"><i class="fa fa-caret-right"></i> Asignar Jaula</a></li>
           </ul>
         </li>
         <li class="nav-parent"><a href="#"><i class="fa fa-edit"></i> <span> Reportes</span></a>
