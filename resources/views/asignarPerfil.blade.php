@@ -19,13 +19,13 @@
           <div class="form-group">
             <label class="col-sm-3"><span class="asterisk">*</span>Documento</label>
             <div class="col-sm-9">
-              <input name="documento" id="documento" class="form-control" placeholder="Type your name..." required="" type="text">
+              <input name="documento" id="documento" class="form-control" placeholder="Numero Documento" required="" type="text">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3"><span class="asterisk">*</span>Nombre</label>
             <div class="col-sm-9">
-              <input name="name" id="name" class="form-control" placeholder="Type your name..." required="" type="text">
+              <input name="name" id="name" class="form-control" placeholder="Nombre Completo" required="" type="text">
             </div>
           </div>
 
@@ -44,21 +44,21 @@
           <div class="form-group">
             <label class="col-sm-3"><span class="asterisk">*</span>Nombre de Usuario</label>
             <div class="col-sm-9">
-              <input name="userName" id="userName" class="form-control" type="text">
+              <input name="userName" id="userName" class="form-control" placeholder="Nombre de Usuario" type="text">
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-sm-3"><span class="asterisk">*</span>Contraseña</label>
             <div class="col-sm-9">
-              <input name="password" id="password" class="form-control" placeholder="Type your email..." required="" type="password">
+              <input name="password" id="password" class="form-control" placeholder="Contraseña" required="" type="password">
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-sm-3"><span class="asterisk">*</span>Repetir Contraseña</label>
             <div class="col-sm-9">
-              <input name="respassword" id="respassword" class="form-control" placeholder="Type your email..." required="" type="password">
+              <input name="respassword" id="respassword" class="form-control" placeholder="Repetir Contraseña" required="" type="password">
             </div>
           </div>
         </div><!-- panel-body -->

@@ -192,7 +192,7 @@ $.ajaxSetup({
       cargarForm: function ( json ){
         var self = this;
         self.$id.val(json[0].id);
-        self.$documento.val(json[0].documento);
+        self.$documento.val(json[0].document);
         //self.$name.val(json[0].idTipoDocumento);
         self.$userName.val(json[0].userName);
         self.$perfil.val(json[0].idPerfil);
@@ -206,7 +206,7 @@ $.ajaxSetup({
         self.$documento.val("");
         self.$name.val("");
         self.$userName.val("");
-        self.$perfil.val("");
+        self.$perfil.val(0);
         self.$password.val("");
         self.$respassword.val("");
       },

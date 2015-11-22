@@ -93,7 +93,7 @@ class PersonalController extends Controller
 
     public function all()
     {
-      $personas = Persona::all();
+      $personas = Personal::all();
       return  json_encode($personas);
     }
 

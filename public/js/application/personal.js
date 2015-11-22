@@ -16,7 +16,6 @@ $.ajaxSetup({
       $modificar : $("#modificar"),
       $consultar : $("#consultar"),
       $eliminar : $("#eliminar"),
-      $listar : $("#listar"),
       $limpiar : $("#limpiar"),
       $id : $("#id"),
       $documento : $("#documento"),
@@ -61,7 +60,7 @@ $.ajaxSetup({
         this.escucharEliminar();
         this.escucharModificar();
         this.escucharLimpiar();
-        this.escucharListar();
+        //this.escucharListar();
         this.limpiarCampos();
       },
 
@@ -214,26 +213,6 @@ $.ajaxSetup({
             even.preventDefault();
             self.limpiarCampos();
             self.inactivarCampos();
-          });
-      },
-
-      escucharListar: function (){
-          var self = this;
-          self.$listar.on("click", function (even){
-            even.preventDefault();
-            var url = '/MenuPrincipal/GestionarPersonal/Personal/listar';
-            $.ajax({
-              url : url,
-              data : {  },
-              type : 'GET',
-              dataType : 'json',
-              success : function(json) {
-                  console.dir(response);;
-              },
-              error : function(xhr, status) {
-                  alert('Disculpe, existió un problema');
-              }
-            });
           });
       },
 

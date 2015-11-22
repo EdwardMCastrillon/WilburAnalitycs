@@ -271,17 +271,16 @@
                   <li class="next"><a href="javascript:void(0)">Next</a></li>
                   <p>
                     <button id="nuevo" class="btn btn-danger">Nuevo</button>
-                    <input type="submit" id="guardar" class="btn btn-danger" value="guardar"/>
+                    <input type="submit" id="guardar" class="btn btn-danger" value="Guardar"/>
                     <button id="modificar" class="btn btn-danger">Modificar</button>
                     <button id="consultar" class="btn btn-danger">Consultar</button>
                     <button id="eliminar" class="btn btn-danger">Eliminar</button>
-                    <button id="listar" class="btn btn-danger">Listar</button>
                     <button id="limpiar" class="btn btn-danger">Limpiar</button>
                     <button id="salir" class="btn btn-danger">Salir</button>
                   </p>
               </ul>
               </form>
-              
+
 
 
             </div><!-- #validationWizard -->

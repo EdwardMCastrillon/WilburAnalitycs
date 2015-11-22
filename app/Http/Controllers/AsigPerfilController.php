@@ -39,7 +39,7 @@ class AsigPerfilController extends Controller
     public function consulta($id)
     {
         $user = User::where('document', '=', $id)->get();
-        $json = json_encode($user);
+        $json = decrypt($user);
         return response()->json($user);
     }
 
