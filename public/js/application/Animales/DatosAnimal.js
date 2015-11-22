@@ -57,6 +57,13 @@ $.ajaxSetup({
                               .text('Consultar')
 
               self.ModalAlerta.modal('show')
+              self.ModalAlerta.find('button.text-button').on('click', function( e ){
+                e.preventDefault()
+                var documento = $('#TextoAlerta').val()
+                if( documento != "" ){
+                  self.ajaxConsultarUsuario()
+                }
+              })
             })
           },
 
@@ -68,7 +75,7 @@ $.ajaxSetup({
               e.preventDefault()
               if(self.validacionCampos()){
 
-                self.AjaxGuardarUsuario(url,data)
+                self.AjaxRequest(url,data)
                                        .then(function ( data ){
                                          self.MensajeAlerta = 'Registro Guardado con Exito!'
                                          $('ModalAlerta h4').empty()
@@ -95,7 +102,7 @@ $.ajaxSetup({
           },
 
 
-          AjaxGuardarUsuario: function ( url, data ){
+          AjaxRequest: function ( url, data ){
             return $.post('url',data)
           },
 
