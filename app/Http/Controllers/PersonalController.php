@@ -68,7 +68,15 @@ class PersonalController extends Controller
           $Persona->estado = $Request->estado;
 
           $Persona->save();
-          return view('guardado');
+
+          $cargo = Cargo::all();
+          $profesion = Profesion::all();
+          $tipoDocumento = TipoDocumento::all();
+          $tipoContrato = TipoContrato::all();
+          $departamento = Departamento::all();
+          $array = array();
+          array_push($array, $tipoDocumento, $departamento, $profesion,  $cargo, $tipoContrato);
+          return redirect()->route('show_personal_path', ['array' => $array])->withErrors('El usuario se guardo satisfactoriamente.');
      }
 
     /**
@@ -81,6 +89,12 @@ class PersonalController extends Controller
         $persona = Personal::where('documento', '=', $id)->get();
         $json = json_encode($persona);
         return response()->json($persona);
+    }
+
+    public function all()
+    {
+      $personas = Persona::all();
+      return  json_encode($personas);
     }
 
     /**
@@ -113,30 +127,7 @@ class PersonalController extends Controller
 
         $municipios = Municipio::where('idDepartamento', '=', $id)->get();
 
-        return dd($municipios);//->toJson();
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return json_encode($municipios);//->toJson();
     }
 
     /**
@@ -145,8 +136,42 @@ class PersonalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function update(Request $Request)
     {
-        //
+      $Persona = Personal::findOrFail($Request->id);
+      $Persona->nombre = $Request->nombres;
+      $Persona->documento = $Request->documento;
+      $Persona->idTipoDocumento = $Request->tipoDocumento;
+      $Persona->primerApellido = $Request->prApellido;
+      $Persona->segundoApellido = $Request->sgApellido;
+      $Persona->fechaNacimiento = $Request->fechaNaci;
+      $Persona->idDepartamento = $Request->departamento;
+      $Persona->idMunicipio = $Request->municipio;
+      $Persona->tipoSangre = $Request->sangre;
+      $Persona->tipoRh = $Request->rh;
+      $Persona->direccion = $Request->direccion;
+      $Persona->correo = $Request->email;
+      $Persona->telefono = $Request->telfijo;
+      $Persona->telefonoMovil = $Request->telMovil;
+      $Persona->idProfesion = $Request->profesion;
+      $Persona->fechaTitulo = $Request->fechaTitulo;
+      $Persona->otrosEstudios = $Request->otrosEstu;
+      $Persona->finalizacion = $Request->fechaFin;
+      $Persona->obtenido = "Si";
+      $Persona->idCargo = $Request->cargo;
+      $Persona->idTipoContrato = $Request->contrato;
+      $Persona->fechaContrato = $Request->fechaContra;
+      $Persona->estado = $Request->estado;
+
+      $Persona->save();
+
+      $cargo = Cargo::all();
+      $profesion = Profesion::all();
+      $tipoDocumento = TipoDocumento::all();
+      $tipoContrato = TipoContrato::all();
+      $departamento = Departamento::all();
+      $array = array();
+      array_push($array, $tipoDocumento, $departamento, $profesion,  $cargo, $tipoContrato);
+      return redirect()->route('show_personal_path', ['array' => $array])->withErrors('El Empleado se modifico satisfactoriamente.');
     }
 }
