@@ -16,6 +16,26 @@
 
   </style>
 
+  <script src="{{ URL::asset('js/jquery-1.10.2.min.js') }}"></script>
+  <script src="{{ URL::asset('js/jquery-migrate-1.2.1.min.js') }}"></script>
+  <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+  <script src="{{ URL::asset('js/modernizr.min.js') }}"></script>
+  <script src="{{ URL::asset('js/jquery.sparkline.min.js') }}"></script>
+  <script src="{{ URL::asset('js/toggles.min.js') }}"></script>
+  <script src="{{ URL::asset('js/retina.min.js') }}"></script>
+  <script src="{{ URL::asset('js/jquery.cookies.js') }}"></script>
+
+  <script src="{{ URL::asset('js/flot/flot.min.js') }}"></script>
+  <script src="{{ URL::asset('js/flot/flot.resize.min.js') }}"></script>
+  <script src="{{ URL::asset('js/morris.min.js') }}"></script>
+  <script src="{{ URL::asset('js/raphael-2.1.0.min.js') }}"></script>
+
+  <script src="{{ URL::asset('js/jquery.datatables.min.js') }}"></script>
+  <script src="{{ URL::asset('js/chosen.jquery.min.js') }}"></script>
+
+  <script src="{{ URL::asset('js/custom.js') }}"></script>
+  <script src="{{ URL::asset('js/dashboard.js') }}"></script>
+
   <!-- HTML5 shim and Respond.js') }} IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="{{ URL::asset('js/html5shiv.js') }}"></script>
@@ -619,25 +639,7 @@
 </section>
 
 
-<script src="{{ URL::asset('js/jquery-1.10.2.min.js') }}"></script>
-<script src="{{ URL::asset('js/jquery-migrate-1.2.1.min.js') }}"></script>
-<script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ URL::asset('js/modernizr.min.js') }}"></script>
-<script src="{{ URL::asset('js/jquery.sparkline.min.js') }}"></script>
-<script src="{{ URL::asset('js/toggles.min.js') }}"></script>
-<script src="{{ URL::asset('js/retina.min.js') }}"></script>
-<script src="{{ URL::asset('js/jquery.cookies.js') }}"></script>
 
-<script src="{{ URL::asset('js/flot/flot.min.js') }}"></script>
-<script src="{{ URL::asset('js/flot/flot.resize.min.js') }}"></script>
-<script src="{{ URL::asset('js/morris.min.js') }}"></script>
-<script src="{{ URL::asset('js/raphael-2.1.0.min.js') }}"></script>
-
-<script src="{{ URL::asset('js/jquery.datatables.min.js') }}"></script>
-<script src="{{ URL::asset('js/chosen.jquery.min.js') }}"></script>
-
-<script src="{{ URL::asset('js/custom.js') }}"></script>
-<script src="{{ URL::asset('js/dashboard.js') }}"></script>
 
 
 @yield('js')
