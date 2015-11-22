@@ -27,9 +27,9 @@ class AnimalesController extends Controller
      */
     public function consult($id)
     {
-        $Animal = App\Animal::find({$id});
+        $Animal = App\Animal::find($id);
 
-        return json_encode($Animal);
+        return $Animal;
     }
 
     /**
@@ -49,7 +49,6 @@ class AnimalesController extends Controller
         $Animal->sexo = $Request->sexo;
         $Animal->estado = $Request->estado;
         $Animal->fechaDestete = $Request->fechadestete;
-
         $Animal->pesoNacer = $Request->pesoNacer;
         $Animal->pesoDestete = $Request->pesoDestete;
         $Animal->fechaConsumo = $Request->fechaConsumo;
