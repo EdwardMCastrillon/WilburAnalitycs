@@ -25,9 +25,9 @@ class AnimalesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function consult($id)
+    public function consulta($id)
     {
-        $Animal = App\Animal::find($id);
+        $Animal = Animal::find($id);
 
         return $Animal;
     }

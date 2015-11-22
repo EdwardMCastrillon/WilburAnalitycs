@@ -9,9 +9,10 @@ $.ajaxSetup({
     (function() {
         return Animal = {
 
-          $buttonCrear   : $('#nuevo'),
-          $buttonGuardar : $('#guardar'),
+          $buttonCrear   : $('#Nuevo'),
+          $buttonGuardar : $('#Guardar'),
           $buttonConsulta: $('#ConsultarUsr'),
+          $buttonEliminar: $('#Eliminar'),
           ModalAlerta    : $('#ModalAlertas'),
           procedencia    : $('select[name="procedencia"]'),
           codigo         : $('input[name="codigo"]'),
@@ -30,14 +31,15 @@ $.ajaxSetup({
           razapadre      : $('select[name="razapadre"]'),
           tipoAnimal     : $('input[name="tipoAnimal"]'),
           MensajeAlerta  : '',
-          ValidacionIpts: [],
-          ValidacionSlct: [],
+          ValidacionIpts : [],
+          ValidacionSlct : [],
 
           Init: function(){
             this.EscucharButtonGuardar()
             this.OcultarCampos()
             this.EscucharButtonConsulta()
             this.EscucharButtonNuevo()
+            this.EscucharButtonEliminar()
             this.ValidacionIpts = [this.codigo,this.estado,this.pesoNacer,this.pesoDestete,this.fechadestete,this.fechaConsumo,this.fechaparto,this.codParto,this.codMadre,this.edad,this.tipoAnimal]
             this.ValidacionSlct = [this.procedencia,this.raza,this.sexo,this.razapadre,this.razapadre]
           },
@@ -48,23 +50,63 @@ $.ajaxSetup({
             self.$buttonConsulta.on('click',function( e ){
               e.preventDefault()
 
-              self.MensajeAlerta = 'Ingrese el Id de su usuario: '
+              self.MensajeAlerta = 'Ingrese el codigo del Animal: '
               $('#TextoAlerta').empty()
                                .text(self.MensajeAlerta)
               self.ModalAlerta.find('div.cuerpo')
-                              .append('<input type="text" class="form-control" />')
+                              .html('<input type="text" class="form-control codigo" />')
               self.ModalAlerta.find('button.text-button')
                               .text('Consultar')
 
               self.ModalAlerta.modal('show')
+
               self.ModalAlerta.find('button.text-button').on('click', function( e ){
                 e.preventDefault()
-                var documento = $('#TextoAlerta').val()
-                if( documento != "" ){
-                  self.ajaxConsultarUsuario()
+                var codigo = $('.codigo').val()
+                self.ModalAlerta.modal('hide')
+                if( codigo != "" ){
+
+                  var url  = '/gestionAnimal/animales/consultar/'+codigo
+                  self.AjaxRequest(url,{"texto":"Hola"})
+                                  .done(function ( data ){
+                                    debugger
+                                    var Animal = data
+                                    if(Animal.hasOwnProperty('codigo')){
+                                      self.MensajeAlerta = 'Animal Consultado con Exito.'
+                                      $('#TextoAlerta').empty()
+                                                       .text(self.MensajeAlerta)
+                                      self.ModalAlerta.find('button.text-button')
+                                                      .hide()
+                                      self.CargarForm(Animal)
+
+                                    }
+                                  })
+                }else{
+
                 }
               })
             })
+          },
+
+          CargarForm: function( ObjAnimal ){
+            var self = this
+
+            self.procedencia.val(ObjAnimal.procedencia)
+            self.codigo.val(ObjAnimal.codigo)
+            self.raza.val(ObjAnimal.raza)
+            self.sexo.val(ObjAnimal.sexo)
+            self.estado.val(ObjAnimal.estado)
+            self.pesoNacer.val(ObjAnimal.pesoNacer)
+            self.pesoDestete.val(ObjAnimal.pesoDestete)
+            self.fechadestete.val(ObjAnimal.fechadestete)
+            self.fechaConsumo.val(ObjAnimal.fechaConsumo)
+            self.codParto.val(ObjAnimal.codParto)
+            self.fechaparto.val(ObjAnimal.fechaparto)
+            self.codMadre.val(ObjAnimal.codMadre)
+            self.edad.val(ObjAnimal.edad)
+            self.razamadre.val(ObjAnimal.razamadre)
+            self.razapadre.val(ObjAnimal.razapadre)
+            self.tipoAnimal.val(ObjAnimal.tipoAnimal)
           },
 
           EscucharButtonGuardar: function(){
@@ -93,6 +135,34 @@ $.ajaxSetup({
 
           },
 
+          EscucharButtonEliminar: function (){
+            var self = this
+            self.$buttonEliminar.on('click', function( e ){
+              e.preventDefault()
+              self.MensajeAlerta = "Ingrese el codigo de animal a Eliminar"
+              $('ModalAlerta h4').empty()
+                                 .text(self.MensajeAlerta)
+              self.ModalAlerta.find('div.cuerpo')
+                              .append('<input type="text" class="form-control .codigo" />')
+              self.ModalAlerta.find('button.text-button')
+                              .text('Eliminar')
+              self.ModalAlerta.modal('show')
+              self.ModalAlerta.find('button.text-button').on('click', function( e ){
+                e.preventDefault()
+                var codigo = $('.codigo').val();
+                var url    = '/gestionAnimal/animales/eliminar/'+codigo
+                self.AjaxRequest(url,{})
+                                .done(function ( response ){
+
+                                })
+                                .fail(function ( response ){
+
+                                })
+
+              })
+            })
+          },
+
           EscucharButtonNuevo: function(){
               var self = this
               self.$buttonCrear.on('click', function( e ){
@@ -103,12 +173,13 @@ $.ajaxSetup({
 
 
           AjaxRequest: function ( url, data ){
-            return $.post('url',data)
+            return $.post(url,data)
           },
 
           HabilitarCampos: function (){
             var self = this
             self.procedencia.removeAttr('disabled')
+            self.codigo.removeAttr('disabled')
             self.raza.removeAttr('disabled')
             self.sexo.removeAttr('disabled')
             self.estado.removeAttr('disabled')
@@ -129,6 +200,7 @@ $.ajaxSetup({
             var self = this
 
             self.procedencia.attr('disabled','disabled')
+            self.codigo.attr('disabled','disabled')
             self.raza.attr('disabled', 'disabled')
             self.sexo.attr('disabled', 'disabled')
             self.estado.attr('disabled', 'disabled')
@@ -152,7 +224,6 @@ $.ajaxSetup({
                 validator = false;
 
             $.each(self.ValidacionIpts, function( i, ipt){
-              debugger
               validator = ipt.val() == "" ? true : false
             })
 
