@@ -23,7 +23,7 @@
 <section>
 
     <div class="signinpanel">
-
+      @include('partials.error')
         <div class="row">
 
             <div class="col-md-7">
@@ -46,11 +46,11 @@
 
 
 
-                <form method="post" action="/loggin">
+                <form method="post" action="{{ route('auth_login_path') }}">
                     <h4 class="nomargin">Loggin</h4>
                     <p class="mt5 mb20">Ingresa para acceder a tu cuenta.</p>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="text" id="username" class="form-control uname" placeholder="Usuario" name="user" />
+                    <input type="text" id="userName" class="form-control uname" placeholder="Usuario" name="userName" />
                     <input type="password" id="password" class="form-control pword" placeholder="Password" name="password" />
                     <a href="#"><small>Olvidate tu Password?</small></a>
                     <button id="loggin" class="btn btn-danger btn-block">Ingresar</button>

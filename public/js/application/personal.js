@@ -18,6 +18,7 @@ $.ajaxSetup({
       $eliminar : $("#eliminar"),
       $listar : $("#listar"),
       $limpiar : $("#limpiar"),
+      $id : $("#id"),
       $documento : $("#documento"),
       $tipoDocumento : $("#tipoDocumento"),
       $nombres : $("#nombres"),
@@ -48,11 +49,13 @@ $.ajaxSetup({
       $docuConsulta : $("#docuConsulta"),
       $cerrarModal : $("#cerrarModal"),
       $aceptarModal : $("#aceptarModal"),
+      $formPersonal : $("#formPersonal"),
 
       Init: function (){
         this.inactivarCampos();
         this.escucharBotones();
         this.escucharConsultar();
+        //this.escucharGuardar();
         this.escucharDepartamento();
         this.escucharAceptarModal();
         this.escucharEliminar();
@@ -122,16 +125,57 @@ $.ajaxSetup({
         var self = this;
         self.$departamento.change(function (){
           var id = self.$departamento.val();
-            debugger;
           if ( id != 0 ){
-            var urlParams = '/MenuPrincipal/personal/:ID'
+            var urlParams = '/MenuPrincipal/personal/:ID';
             var url = urlParams.replace(':ID', id );
-            $.ajax( url, function (response){
-              console.dir(response);
+            $.ajax({
+              url : url,
+              data : {  },
+              type : 'GET',
+              dataType : 'json',
+              success : function(json) {
+                  self.cargarMunicipio(json);
+              },
+              error : function(xhr, status) {
+                  alert('Disculpe, existió un problema');
+              }
             });
           }
         });
+
       },
+
+      escucharGuardar: function (){
+        var self = this;
+				var data = $('#formPersonal').serialize();
+        self.$guardar.on('click', function (even){
+					even.preventDefault();
+					$.ajax({
+						url: '/MenuPrincipal/GestionarPersonal/Personal/guardar',
+						data: data,
+						type:'POST',
+						dataType: 'json',
+						succes: function ( data ){
+							console.dir(data);
+						},
+						error: function ( xhr, status ){
+							alert('Problema al realizar el ajax'+ xhr.error());
+						}
+					});
+			  });
+      },
+
+      cargarMunicipio: function ( json ){
+        var self = this;
+        //var objeto = JSON.parse(json);
+        var options = '<option value="0">Seleccione una Opcion</option>';
+        self.$municipio.empty();
+        for (var i = 0; i <= json.length - 1; i++){
+          options += '<option value="' + json[i]['idMunicipio'] + '">' + json[i]['descripcion'] + '</option>';
+        }
+        self.$municipio.html(options);
+      },
+
 
       escucharConsultar: function (){
         var self = this;
@@ -178,8 +222,17 @@ $.ajaxSetup({
           self.$listar.on("click", function (even){
             even.preventDefault();
             var url = '/MenuPrincipal/GestionarPersonal/Personal/listar';
-            $.ajax( url ).done( function (response){
-              
+            $.ajax({
+              url : url,
+              data : {  },
+              type : 'GET',
+              dataType : 'json',
+              success : function(json) {
+                  console.dir(response);;
+              },
+              error : function(xhr, status) {
+                  alert('Disculpe, existió un problema');
+              }
             });
           });
       },
@@ -194,27 +247,51 @@ $.ajaxSetup({
             if ( self.textoTitulo.text() == "Consultar."){
               var urlParams = '/MenuPrincipal/GestionarPersonal/Personal/consultar/:ID';
               var url = urlParams.replace(':ID', id );
-              $.ajax( url ).done( function (response){
-                var x = JSON.parse(response)
-                alert(x)
-                if ( response != undefined ){
-                  self.cargarForm(response);
+              $.ajax({
+                url : url,
+                data : {  },
+                type : 'GET',
+                dataType : 'json',
+                success : function(json) {
+                    self.cargarForm(json);
+                    console.dir(json);
+                },
+                error : function(xhr, status) {
+                    alert('Disculpe, existió un problema');
                 }
               });
             }else if (self.textoTitulo.text() == "Eliminar.") {
               var urlParams = '/MenuPrincipal/GestionarPersonal/Personal/eliminar/:ID';
               var url = urlParams.replace(':ID', id );
-              $.ajax( url, function (response){
-                if ( response != undefined ){
-                  alert(response);
+              $.ajax({
+                url : url,
+                data : {  },
+                type : 'GET',
+                dataType : 'json',
+                success : function(json) {
+                    console.dir(json);
+                },
+                error : function(xhr, status) {
+                    alert('Disculpe, existió un problema');
                 }
               });
             }else{
-              var urlParams = '/MenuPrincipal/GestionarPersonal/Personal/editar/:ID';
+              var urlParams = '/MenuPrincipal/GestionarPersonal/Personal/consultar/:ID';
               var url = urlParams.replace(':ID', id );
-              $.ajax( url, function (response){
-                if ( response != undefined ){
-                  self.cargarForm(response);
+              $.ajax({
+                url : url,
+                data : {  },
+                type : 'GET',
+                dataType : 'json',
+                success : function(json) {
+                    self.cargarForm(json);
+                    self.activarCampos();
+                    self.$documento.attr('readonly', 'readonly');
+                    self.$formPersonal.attr('action', '/MenuPrincipal/GestionarPersonal/Personal/Modificar.php');
+                    console.dir(json);
+                },
+                error : function(xhr, status) {
+                    alert('Disculpe, existió un problema');
                 }
               });
             }
@@ -225,36 +302,39 @@ $.ajaxSetup({
 
       cargarForm: function ( json ){
         var self = this;
-        var objeto = JSON.parse(json);
-        debugger;
-        self.$documento.val();
-        self.$tipoDocuemnto.val();
-        self.$nombres.val();
-        self.$prApellido.val();
-        self.$sgApellido.val();
-        self.$fechaNaci.val();
-        self.$departamento.val();
-        self.$municipio.val();
-        self.$sangre.val();
-        self.$rh.val();
-        self.$direccion.val();
-        self.$email.val();
-        self.$telfijo.val();
-        self.$telMovil.val();
-        self.$profesion.val();
-        self.$fechaTitulo.val();
-        self.$otrosEstu.val();
-        self.$fechaFin.val();
-        self.$si.val();
-        self.$no.val();
-        self.$cargo.val();
-        self.$contrato.val();
-        self.$fechaContra.val();
-        self.$estado.val();
+        self.$id.val(json[0].id);
+        self.$documento.val(json[0].documento);
+        self.$tipoDocumento.val(json[0].idTipoDocumento);
+        self.$nombres.val(json[0].nombre);
+        self.$prApellido.val(json[0].primerApellido);
+        self.$sgApellido.val(json[0].segundoApellido);
+        self.$fechaNaci.val(json[0].fechaNacimiento);
+        self.$departamento.val(json[0].idDepartamento);
+        self.$municipio.val(json[0].idMunicipio);
+        self.$sangre.val(json[0].tipoSangre);
+        self.$rh.val(json[0].tipoRh);
+        self.$direccion.val(json[0].direccion);
+        self.$email.val(json[0].correo);
+        self.$telfijo.val(json[0].telefono);
+        self.$telMovil.val(json[0].telefonoMovil);
+        self.$profesion.val(json[0].idProfesion);
+        self.$fechaTitulo.val(json[0].fechaTitulo);
+        self.$otrosEstu.val(json[0].otrosEstudios);
+        self.$fechaFin.val(json[0].finalizacion);
+        if ( json[0].obtenido == 'Si' ){
+          self.$si.attr('checked', true);
+        }else{
+          self.$no.attr('checked', true);
+        }
+        self.$cargo.val(json[0].idCargo);
+        self.$contrato.val(json[0].idTipoContrato);
+        self.$fechaContra.val(json[0].fechaContrato);
+        self.$estado.val(json[0].estado);
       },
 
       limpiarCampos: function (  ){
         var self = this;
+        self.$id.val("");
         self.$documento.val("");
         self.$tipoDocumento.val(0);
         self.$nombres.val("");

@@ -85,8 +85,8 @@
 
         <li class="nav-parent"><a href="#"><i class="fa fa-edit"></i> <span> Gestionar Personal</span></a>
           <ul class="children">
-            <li><a href="MenuPrincipal/personal"><i class="fa fa-caret-right"></i> Registro Personal</a></li>
-            <li><a href="form-layouts.html"><i class="fa fa-caret-right"></i> Asignar Perfil</a></li>
+            <li><a href="{{ route('show_personal_path') }}"><i class="fa fa-caret-right"></i> Registro Personal</a></li>
+            <li><a href="{{ route('show_asigperfil_path') }}"><i class="fa fa-caret-right"></i> Asignar Perfil</a></li>
           </ul>
         </li>
         <li class="nav-parent"><a href="#"><i class="fa fa-edit"></i> <span> Gestionar Animales</span></a>
@@ -105,6 +105,7 @@
             <li><a href="MenuPrincipal/Animales"><i class="fa fa-caret-right"></i> Registro Animal</a></li>
           </ul>
         </li>
+        <li class="active"><a href="{{ route('auth_logout_path') }}"><i class="fa fa-home"></i> <span>Logout</span></a></li>
       </ul>
 
       <!-- infosummary -->
@@ -316,6 +317,30 @@
     </div>
       @yield('content')
 
+      <div class="modal" id="ModalAlertas">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="modal-title"></h4>
+              </div>
+              <div class="modal-body">
+                <p id="TextoAlerta"></p>
+                <form class="form" action="" method="post">
+                  <div class="form-group">
+                    <div class="col-sm-6">
+                      <input name="docuConsulta" id="docuConsulta" class="form-control" placeholder="Numero Documeto" required="" type="text">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="cerrarModal" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-default" id="aceptarModal" data-dismiss="modal">Aceptar</button>
+              </div>
+            </div>
+          </div>
+      </div>
 
 <!-- contentpanel -->
 

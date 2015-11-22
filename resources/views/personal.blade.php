@@ -7,6 +7,7 @@
 <div class="col-md-12">
         <div class="panel panel-default">
           <div class="panel-heading">
+            @include('partials.succesfull')
             <div class="panel-btns">
               <a href="#" class="panel-close">×</a>
               <a href="#" class="minimize">−</a>
@@ -24,15 +25,18 @@
                 <li><a href="#vtab4" data-toggle="tab"><span></span>Datos Laborales</a></li>
               </ul>
 
-              <form action="/guardarUsuario" novalidate="novalidate" class="form" id="firstForm">
+              <form action="{{ route('save_personal_path') }}" method="post" novalidate="novalidate" class="form" id="formPersonal">
               <div class="tab-content">
 
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="_method" value="patch">
                 <div class="tab-pane active" id="vtab1">
                   <div class="row">
                   <div class="col-md-5">
                     <div class="form-group">
                       <label class="col-sm-4 control-label">Documento</label>
                       <div class="col-sm-5">
+                        <input name="id" id="id" type="hidden">
                         <input name="documento" id="documento" class="form-control" required="" type="text">
                       </div>
                     </div>
@@ -66,7 +70,6 @@
                       <label class="col-sm-4 control-label">Segundo Apellido</label>
                       <div class="col-sm-6">
                         <input name="sgApellido" id="sgApellido" class="form-control" required="" type="text">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                       </div>
                     </div>
                 </div>
@@ -98,10 +101,6 @@
                       <label class="col-sm-4">Municipio</label>
                       <div class="col-sm-6">
                         <select class="form-control" name="municipio" id="municipio">
-                          <option value="0">Seleccione una Opcion</option>
-                          <option value="1">Cedula Ciudadania</option>
-                          <option value="2">Cedula Extranjeria</option>
-                          <option value="3">Pasaporte</option>
                         </select>
                       </div>
                     </div>
@@ -282,30 +281,7 @@
                   </p>
               </ul>
               </form>
-              <div class="modal" id="ModalAlertas">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="modal-title"></h4>
-                      </div>
-                      <div class="modal-body">
-                        <p id="TextoAlerta"></p>
-                        <form class="form" action="" method="post">
-                          <div class="form-group">
-                            <div class="col-sm-6">
-                              <input name="docuConsulta" id="docuConsulta" class="form-control" placeholder="Numero Documeto" required="" type="text">
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" id="cerrarModal" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-default" id="aceptarModal" data-dismiss="modal">Aceptar</button>
-                      </div>
-                    </div>
-                  </div>
-              </div>
+              
 
 
             </div><!-- #validationWizard -->

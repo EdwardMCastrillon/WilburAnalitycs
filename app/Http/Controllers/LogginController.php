@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class LogginController extends Controller
 {
@@ -17,19 +15,7 @@ class LogginController extends Controller
      */
     public function index(Request $request)
     {
-      $UserName = $request->input('user');
-      $password = $request->input('password');
-
-      $user = User::where('userName', '=', $UserName)
-                  ->where('password', '=', $password)
-                  ->get();
-
-
-      if(count($user) > 0){
-        return view('MenuPrincipal');
-      }else{
-        abort(500);
-      }
+        return view('loggin');
     }
 
     /**
@@ -48,43 +34,16 @@ class LogginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function login(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+      $this->validate($request, [
+           'userName'    => 'required',
+           'password' => 'required',
+       ]);
+       if (!auth()->attempt($request->only(['userName', 'password']))) {
+           return redirect()->route('auth_show_path')->withErrors('El usuario no se encuentra registrado.');
+       }
+       return redirect()->route('show_menu_path');
     }
 
     /**
@@ -93,8 +52,9 @@ class LogginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function logout()
     {
-        //
+      auth()->logout();
+      return redirect()->route('auth_show_path');
     }
 }
