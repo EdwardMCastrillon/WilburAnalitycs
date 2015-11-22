@@ -92,8 +92,8 @@
         </li>
         <li class="nav-parent"><a href="#"><i class="fa fa-edit"></i> <span> Gestionar Animales</span></a>
           <ul class="children">
-            <li><a href="gestionAnimal/animales"><i class="fa fa-caret-right"></i> Registro Animal</a></li>
-            <li><a href="gestionAnimal/jaulas"><i class="fa fa-caret-right"></i> Asignar Jaula</a></li>
+            <li><a href="/MenuPrincipal/GestionAnimal/animales"><i class="fa fa-caret-right"></i> Registro Animal</a></li>
+            <li><a href="/MenuPrincipal/GestionAnimal/jaulas"><i class="fa fa-caret-right"></i> Asignar Jaula</a></li>
           </ul>
         </li>
         <li class="nav-parent"><a href="#"><i class="fa fa-edit"></i> <span> Reportes</span></a>

@@ -66,8 +66,8 @@ $.ajaxSetup({
                 self.ModalAlerta.modal('hide')
                 if( codigo != "" ){
 
-                  var url  = '/gestionAnimal/animales/consultar/'+codigo
-                  self.AjaxRequest(url,{"texto":"Hola"})
+                  var url  = '/MenuPrincipal/GestionAnimal/animales/consultar/'+codigo
+                  self.AjaxRequest(url,{ },'GET')
                                   .done(function ( data ){
                                     debugger
                                     var Animal = data
@@ -80,6 +80,9 @@ $.ajaxSetup({
                                       self.CargarForm(Animal)
 
                                     }
+                                  })
+                                  .fail( function( error ){
+
                                   })
                 }else{
 
@@ -111,13 +114,13 @@ $.ajaxSetup({
 
           EscucharButtonGuardar: function(){
             var self = this,
-                url  = '/gestionAnimal/animales/store',
+                url  = '/MenuPrincipal/GestionAnimal/animales/store',
                 data = $('#firstForm').serialize();
             self.$buttonGuardar.on('click', function( e ){
               e.preventDefault()
               if(self.validacionCampos()){
 
-                self.AjaxRequest(url,data)
+                self.AjaxRequest(url,data,'GET')
                                        .then(function ( data ){
                                          self.MensajeAlerta = 'Registro Guardado con Exito!'
                                          $('ModalAlerta h4').empty()
@@ -150,12 +153,12 @@ $.ajaxSetup({
               self.ModalAlerta.find('button.text-button').on('click', function( e ){
                 e.preventDefault()
                 var codigo = $('.codigo').val();
-                var url    = '/gestionAnimal/animales/eliminar/'+codigo
-                self.AjaxRequest(url,{})
+                var url    = '/MenuPrincipal/GestionAnimal/animales/eliminar/'+codigo
+                self.AjaxRequest(url,{},'GET')
                                 .done(function ( response ){
 
                                 })
-                                .fail(function ( response ){
+                                .fail(function ( error ){
 
                                 })
 
@@ -172,8 +175,14 @@ $.ajaxSetup({
           },
 
 
-          AjaxRequest: function ( url, data ){
-            return $.post(url,data)
+          AjaxRequest: function ( url, data, verb ){
+            return
+              $.ajax({
+              url : url,
+              data : data,
+              type : verb,
+              dataType : 'json',
+            })
           },
 
           HabilitarCampos: function (){
