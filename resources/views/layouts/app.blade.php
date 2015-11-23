@@ -98,7 +98,8 @@
         </li>
         <li class="nav-parent"><a href="#"><i class="fa fa-edit"></i> <span> Reportes</span></a>
           <ul class="children">
-            <li><a href="MenuPrincipal/Animales"><i class="fa fa-caret-right"></i> Reporte Partos</a></li>
+            <li><a href="{{ route('list_personal_path') }}"><i class="fa fa-caret-right"></i> Reporte Personal</a></li>
+            <li><a href="{{ route('list_asignarperfil_path') }}"><i class="fa fa-caret-right"></i> Reporte Usuarios</a></li>
           </ul>
         </li>
         <li class="nav-parent"><a href="#"><i class="fa fa-edit"></i> <span> Indicadores</span></a>

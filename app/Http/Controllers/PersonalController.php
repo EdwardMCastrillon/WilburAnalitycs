@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 use App\Http\Requests;
+use Illuminate\Http\Request as HttpRequest;
 use App\Http\Controllers\Controller;
 use App\Cargo;
 use App\Profesion;
@@ -93,8 +94,9 @@ class PersonalController extends Controller
 
     public function all()
     {
+
       $personas = Personal::all();
-      return  json_encode($personas);
+      return view('reportepersonal')->with('personas', $personas);
     }
 
     /**
@@ -103,17 +105,22 @@ class PersonalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function eliminar($id)
+    public function eliminar(Request $request, $id)
     {
-      $persona = Personal::where('documento', '=', $id)->get();
+
+        $persona = Personal::where('documento', '=', $id)->get();
         if (is_null ($persona))
         {
-            App::abort(404);
+            return response()->json(['mensaje' => 'El usuario no se encuentra registrado']);
         }
 
-        $persona->delete();
-
-        return response()->json(['mensaje' => 'El registro se elimino correctamente']);
+        //$persoElimi = Personal::find($persona->id);
+        $id = $persona->id;
+        Personal::destroy($id);
+        if($request->ajax())
+        {
+            return response()->json(['mensaje' => 'El registro se elimino correctamente']);
+        }
     }
 
     /**

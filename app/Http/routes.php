@@ -65,7 +65,7 @@ Route::get('/MenuPrincipal/GestionarPersonal/Personal/consultar/{id}', [
   'as' => 'search_personal_path',
 ]);
 
-Route::get('/MenuPrincipal/GestionarPersonal/Personal/eliminar/{id}', [
+Route::delete('/MenuPrincipal/GestionarPersonal/Personal/eliminar/{id}', [
   'uses' => 'PersonalController@eliminar',
   'as' => 'delete_personal_path'
 ]);

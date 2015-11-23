@@ -40,7 +40,7 @@ class Perfil extends Model implements AuthenticatableContract,
 
   public function Perfil()
   {
-    return $this->hasMany(User::class, 'idPerfil', 'idPerfil');
+    return $this->hasMany(Perfil::class, 'idPerfil', 'idPerfil');
   }
 
 }

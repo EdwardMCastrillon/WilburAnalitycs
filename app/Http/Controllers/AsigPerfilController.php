@@ -45,8 +45,8 @@ class AsigPerfilController extends Controller
 
     public function all()
     {
-      $user = User::all();
-      return  json_encode($user);
+      $users = User::all();
+      return view('reporteusuarios')->with('users', $users);
     }
 
     /**
